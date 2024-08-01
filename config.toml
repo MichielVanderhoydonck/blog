@@ -1,5 +1,5 @@
 # The URL the site will be built for
-base_url = "https://madventures.be"
+base_url = "https://michielvanderhoydonck.github.io/blog/"
 
 theme = "kita"
 
