@@ -1,0 +1,100 @@
+# The URL the site will be built for
+base_url = "https://madventures.be"
+
+theme = "kita"
+
+# The site title and description; used in feeds by default.
+title = "MadVentures"
+description = "MadVentures"
+author = "Michiel V."
+
+# The default language; used in feeds.
+default_language = "en"
+
+# The taxonomies to be rendered for the site and their configuration of the default languages
+# Example:
+#     taxonomies = [
+#       {name = "tags", feed = true}, # each tag will have its own feed
+#       {name = "tags"}, # you can have taxonomies with the same name in multiple languages
+#       {name = "categories", paginate_by = 5},  # 5 items per page for a term
+#       {name = "authors"}, # Basic definition: no feed or pagination
+#     ]
+#
+taxonomies = [{ name = "tags", rss = true, paginate_by = 5 }]
+
+# Whether to automatically compile all Sass files in the sass directory
+compile_sass = false
+
+# Whether to build a search index to be used later on by a JavaScript library
+build_search_index = false
+
+[markdown]
+# Whether to do syntax highlighting
+# Theme can be customised by setting the `highlight_theme` variable to a theme supported by Zola
+highlight_code = true
+
+# A list of directories used to search for additional `.sublime-syntax` and `.tmTheme` files.
+extra_syntaxes_and_themes = []
+
+# The theme to use for code highlighting.
+# See below for list of allowed values.
+highlight_theme = "base16-ocean-dark"
+
+# The Kita theme style config.
+[extra]
+# Enable KaTex math formula support globally.
+math = false
+# Enable mermaid support globally.
+mermaid = false
+# Enable comment support globally.
+comment = false
+# The URL of social image.
+social_image = "icons/github.svg"
+
+[extra.style]
+# The custom background color.
+# bg_color = ""
+
+# The custom background color in dark mode.
+# bg_dark_color = ""
+
+# Enable header blur.
+# header_blur = true
+
+# The custom header color, only available when `header_blur` is false.
+# header_color = ""
+
+# The custom header color in dark mode, only available when `header_blur` is false.
+# header_dark_color = ""
+
+# The profile on home page.
+# [extra.profile]
+# name = "Kita - Zola Theme"
+# bio = "Kita is a clean, elegant and simple blog theme for Zola."
+# The URL of avatar.
+# avatar_url = "icons/github.svg"
+# Invert color in dark mode.
+# avatar_invert = true
+
+# The social icons below the profile on the home page.
+# The `name` should be the file name of static/icons/*.svg or the icon name of https://simpleicons.org/
+[[extra.profile.social]]
+name = "github"
+url = "https://github.com/MichielVanderhoydonck"
+
+# The top menu.
+[[extra.menu]]
+name = "Projects"
+url = "$BASE_URL/projects"
+
+[[extra.menu]]
+name = "Archive"
+url = "$BASE_URL/archive"
+
+[[extra.menu]]
+name = "Tags"
+url = "$BASE_URL/tags"
+
+[[extra.menu]]
+name = "About"
+url = "$BASE_URL/about"
