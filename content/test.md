@@ -9,3 +9,5 @@ tags = ["markdown", "test"]
 # Testing out
 
 This post mostly serves testing.
+
+# It was a beautiful day!
