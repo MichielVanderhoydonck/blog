@@ -11,7 +11,7 @@ Feel free to join me on my **mad ventures**!
 ## Connect with me
 
 Noticed an error in one of my blogs or have a suggestion?  
-Feel free to reach out at **me@[the domain you're currently visiting] ;)**.
+Feel free to reach out via email at [**me@madventures.be**](mailto:me@madventures.be)!
 
 ## Resume
 
