@@ -45,7 +45,7 @@ highlight_theme = "base16-ocean-dark"
 # Enable KaTex math formula support globally.
 math = false
 # Enable mermaid support globally.
-mermaid = false
+mermaid = true
 # Enable comment support globally.
 comment = false
 # The URL of social image.

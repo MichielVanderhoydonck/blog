@@ -6,7 +6,11 @@ path = "about"
 ## Hello friend
 
 How nice of you to visit my digital spot.  
-Feel free to join me on my mad ventures!
+Feel free to join me on my `mad ventures`!
+
+## Reach out
+
+Should you notice an error in any blogs or want to suggest something feel free to reach out to me@`the domain you're currently visiting ;)`.
 
 ## Resume
 
