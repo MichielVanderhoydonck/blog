@@ -1,6 +1,6 @@
 [[project]]
 name = "MadVentures Blog"
-desc = "Setup of this blog using Zola, a static site generator writen in Rust."
+desc = "Setup of this blog using Zola, a static site generator written in Rust."
 tags = ["kita", "zola"]
 links = [
     { name = "github", url = "https://www.github.com/MichielVanderhoydonck/blog" },
