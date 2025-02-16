@@ -127,7 +127,9 @@ With these changes, our sandbox.lisp should look as follows:
 (env/set "TF_VAR_url" (env/get "LOCALSTACK_URL"))
 (env/set "TF_VAR_url_s3" (env/get "LOCALSTACK_URL_S3"))
 ```
+
 ### Buckets of Fun: Terraforming S3
+
 Now let's create a Terraform configuration to define an S3 bucket with some test content. Create a file named main.tf in your sandbox directory:
 ```terraform
 variable "region" {
@@ -171,11 +173,25 @@ Here’s what’s happening:
   -  The AWS provider is set up to use LocalStack, skipping unnecessary credential checks.
   -  We create an S3 bucket named henry.
   -  Inside the bucket, we store an S3 object containing a small test payload.  
+  
 ### Testing 3..4..  
+
 After running **terraform init**, **- plan**, and **- apply**, we can verify that the object was created with `echo $(aws s3 cp s3://henry/data -)`.
 Our terminal should print out the content we've stored in that data key.   
 
 Awesome! We've now used an actual Infrastructure as Code tool to interact with our local cloud.
+
+### Keeping Things in Context
+
+Our **kubectl** commands should also only run against our minikube cluster when inside our sandbox directory.
+To achieve that we'll store our minikube config in a dedicated file:
+```bash
+kubectl config view --minify > ~/.kube/minikube-config
+```
+And set our kubeconfig in our sandbox.lisp:
+```lisp
+(env/set "KUBECONFIG" "~/.kube/minikube-config")
+```
 
 ### Burrowing Deeper: A Gopher in Our Sandbox
 
