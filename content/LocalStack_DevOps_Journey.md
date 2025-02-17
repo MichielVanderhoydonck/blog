@@ -131,7 +131,7 @@ With these changes, our sandbox.lisp should look as follows:
 ### Buckets of Fun: Terraforming S3
 
 Now let's create a Terraform configuration to define an S3 bucket with some test content. Create a file named main.tf in your sandbox directory:
-```terraform
+```bash
 variable "region" {
   type = string
 }
@@ -239,12 +239,56 @@ func main() {
 }
 ```
 
+### SQueeL!
+
+With our tools now tidily stitched together, it's useful to get a high-level overview of the changes we've made to our setup.
+More often than not, we query individual services using their dedicated tools—but why not use something more general, like SQL?
+This is where our final tool comes in: [steampipe](https://steampipe.io/), the **secret sauce** that allows us to verify our setup using simple SQL queries.
+
+#### Setting Up Steampipe for LocalStack
+
+After installing **Steampipe** and its **AWS plugin**, we need to configure a profile.  
+In the `$HOME/.steampipe/config/aws.spc` add the following section:
+```bash
+connection "sandbox" {
+  plugin  = "aws"
+  # Specify the LocalStack region(s) you want to target
+  regions      = ["us-east-1"]
+
+  # Explicitly provide test credentials for LocalStack
+  access_key   = "test"
+  secret_key   = "test"
+
+  # Set the LocalStack endpoint URL
+  endpoint_url = "http://localhost:4566"
+
+  # Force S3 requests to use path-style addressing, required for LocalStack
+  s3_force_path_style = true
+  
+  max_error_retry_attempts = 3
+  min_error_retry_delay = 5
+}
+```
+
+#### Querying Our Sandbox
+
+Can we query our buckets one final time to find our beloved henry and his contents?
+By running:
+```sql
+select * from sandbox.aws_s3_object where bucket_name = 'henry';
+```
+We can confirm that everything is in place!
+
+At first glance, this might seem unnecessary—but the real power of Steampipe comes when we install additional plugins. 
+This allows us to query across LocalStack, Kubernetes, and other systems, providing a unified way to track system behavior, changes, and interactions across different components.
+
 # Shaking Off the Sand
+ 
+While we've explored multiple ways to integrate with our fake cloud—from CLI commands to Terraform and Go—LocalStack's true power lies in its flexibility. 
+It enables rapid testing, local development, and even CI/CD validation without incurring real cloud costs.
 
-We've explored multiple ways to integrate with our fake cloud, from simple CLI commands to Infrastructure as Code and high-level programming with Go.
-While this might seem like a collection of low-hanging fruit, we've seen that our sandbox is more than just a playground.  
+However, not all AWS services are fully supported in LocalStack. If you're planning to simulate a specific service, it's worth checking the [API coverage page](https://docs.localstack.cloud/references/coverage/) to see what’s available.
 
-The result is a lightweight, cost-effective environment that allows us to validate configurations and test the logic of our setup in a highly integrated way.  
-This flexibility makes it a valuable tool not just for experimentation but also for CI pipelines—whether as a test container without orchestration or as a deployment within a local Kubernetes cluster.
+Even with these limitations, LocalStack remains a valuable tool for testing cloud interactions in a fast, isolated, and cost-effective way.  
 
 Thanks for joining me in this madness—see you on our next venture!
