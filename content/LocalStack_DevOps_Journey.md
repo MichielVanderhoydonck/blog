@@ -11,17 +11,17 @@ tags = ["AWS", "LocalStack","DevOps","Cloud Development","Infrastructure as Code
 When working on cloud infrastructure, we're often curious about where our Infrastructure as Code (IaC) efforts will lead.
 The end result is what truly counts, but during development, tools that focus on managing state and detecting drift often leave us with an incomplete picture—especially when the infrastructure wasn’t entirely created or updated by these tools.  
 
-On top of that, building and applying cloud models often takes time. We're left in limbo, waiting for results and hoping we accounted for every detail.  
+On top of that, building and applying cloud models often takes time. We're left in limbo, waiting for results and hoping we accounted for every detail.
 While these tools are invaluable for ensuring consistency and spotting configuration drift, they don't always provide a way to simulate how our infrastructure will behave in a live environment.  
 
-This is where LocalStack comes in. As a cloud development framework for AWS, it offers an extra layer of clarity by enabling us to test our infrastructure locally.  
+This is where LocalStack comes in. As a cloud development framework for AWS, it offers an extra layer of clarity by enabling us to test our infrastructure locally.
 By doing so, we reduce wait times, improve confidence in our models, and even gain a chance to validate integration between services.  
 
 This post dives into [LocalStack](https://www.localstack.cloud/), exploring how it bridges the gap between theory and reality in cloud infrastructure development.  
 
 # Setting the Stage
 
-Rather than rattling off a vague list of the tools and components in play, I’ll gladly share a setup you can follow along with at your own pace.  
+Rather than rattling off a vague list of the tools and components in play, I’ll gladly share a setup you can follow along with at your own pace.
 We'll create our own sandbox to experiment in, and that means "your toys are just as good as mine." While I'll share the tools I’m using, feel free to substitute them with alternatives that work for you.
 
 ## LocalStack
@@ -53,9 +53,9 @@ nohup kubectl -n localstack port-forward svc/localstack 4566:4566 &
 `nohup` keeps the process running even when the terminal is closed  
 `&` frees up our terminal again.
 
-One approach is to use wrapper scripts like **awslocal** and **tflocal**, which serve as drop-in replacements for the **AWS CLI** and **Terraform**, respectively. 
+One approach is to use wrapper scripts like **awslocal** and **tflocal**, which serve as drop-in replacements for the **AWS CLI** and **Terraform**, respectively.
 While these can be convenient, I prefer using the actual CLI tools and configuring them to work seamlessly within a controlled environment.
-A key advantage of this approach is flexibility—being able to define a directory as a self-contained sandbox where configurations automatically adjust when you step inside. 
+A key advantage of this approach is flexibility—being able to define a directory as a self-contained sandbox where configurations automatically adjust when you step inside.
 To achieve this, I use [Shadowenv by Shopify](https://shopify.github.io/shadowenv/).
 
 ## Do You Want to Build a Sand Castle?
@@ -72,7 +72,7 @@ To verify that Shadowenv is working, let's add a simple environment variable:
 ```lisp
 (env/set "MSG" "Hello from the Sandbox!")   
 ```
-We're now left with actually trusting the sandbox directory for Shadowenv execution, we do this executing the **shadowenv trust** command from inside the directory.  
+We're now left with actually trusting the sandbox directory for Shadowenv execution, we do this executing the **shadowenv trust** command from inside the directory.
 Great, now outside our directory we won't get any result issuing the **echo $MSG** command, inside it we'll see our lovely greeting.
 
 ### Configuring AWS CLI for LocalStack
@@ -104,16 +104,16 @@ To verify our doings, from within our sandbox directory we can execute a simple 
     "Prefix": null
 }
 ```
-With this setup, we now have a controlled sandbox environment where we can freely experiment using the **AWS CLI**. 
+With this setup, we now have a controlled sandbox environment where we can freely experiment using the **AWS CLI**.
 
 ### Feeling the Sand
 
-Using the **AWS CLI** was just a first step. When managing cloud infrastructure, it's best to have a **reusable blueprint**—and that's where **Infrastructure as Code (IaC)** comes in.  
+Using the **AWS CLI** was just a first step. When managing cloud infrastructure, it's best to have a **reusable blueprint**—and that's where **Infrastructure as Code (IaC)** comes in.
 For simplicity, we'll start with **Terraform**, though there are many other tools we could use to manage our fake cloud, often leveraging Kubernetes. I plan to explore those in a later post!
-Before we start writing, let's take a look at what the [AWS Provider for Terraform](https://registry.terraform.io/providers/hashicorp/aws/latest/docs) requires.  
+Before we start writing, let's take a look at what the [AWS Provider for Terraform](https://registry.terraform.io/providers/hashicorp/aws/latest/docs) requires.
 We can see that the region should be configured. For our next example we should also define an endpoint for **S3** in our setup.
 To make **Terraform** aware of these settings, we'll update our sandbox environment variables. 
-Instead of hardcoding values, we’ll use the `TF_VAR` prefix so Terraform can pick them up from environment variables dynamically.  
+Instead of hardcoding values, we’ll use the `TF_VAR` prefix so Terraform can pick them up from environment variables dynamically.
 With these changes, our sandbox.lisp should look as follows:
 ```lisp
 ; General 
@@ -168,7 +168,6 @@ resource "aws_s3_object" "test_bucket_content" {
 }
 ```
 Here’s what’s happening:
-
   -  We define variables for the region and LocalStack endpoints.
   -  The AWS provider is set up to use LocalStack, skipping unnecessary credential checks.
   -  We create an S3 bucket named henry.
@@ -177,7 +176,7 @@ Here’s what’s happening:
 ### Testing 3..4..  
 
 After running **terraform init**, **- plan**, and **- apply**, we can verify that the object was created with `echo $(aws s3 cp s3://henry/data -)`.
-Our terminal should print out the content we've stored in that data key.   
+Our terminal should print out the content we've stored in that data key.
 
 Awesome! We've now used an actual Infrastructure as Code tool to interact with our local cloud.
 
@@ -279,16 +278,16 @@ select * from sandbox.aws_s3_object where bucket_name = 'henry';
 ```
 We can confirm that everything is in place!
 
-At first glance, this might seem unnecessary—but the real power of Steampipe comes when we install additional plugins. 
+At first glance, this might seem unnecessary—but the real power of Steampipe comes when we install additional plugins.
 This allows us to query across LocalStack, Kubernetes, and other systems, providing a unified way to track system behavior, changes, and interactions across different components.
 
 # Shaking Off the Sand
  
-While we've explored multiple ways to integrate with our fake cloud—from CLI commands to Terraform and Go—LocalStack's true power lies in its flexibility. 
+While we've explored multiple ways to integrate with our fake cloud—from CLI commands to Terraform and Go—LocalStack's true power lies in its flexibility.
 It enables rapid testing, local development, and even CI/CD validation without incurring real cloud costs.
 
 However, not all AWS services are fully supported in LocalStack. If you're planning to simulate a specific service, it's worth checking the [API coverage page](https://docs.localstack.cloud/references/coverage/) to see what’s available.
 
-Even with these limitations, LocalStack remains a valuable tool for testing cloud interactions in a fast, isolated, and cost-effective way.  
+Even with these limitations, LocalStack remains a valuable tool for testing cloud interactions in a fast, isolated, and cost-effective way.
 
 Thanks for joining me in this madness—see you on our next venture!
