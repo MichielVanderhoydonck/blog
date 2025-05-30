@@ -58,7 +58,7 @@ While these can be convenient, I prefer using the actual CLI tools and configuri
 A key advantage of this approach is flexibility—being able to define a directory as a self-contained sandbox where configurations automatically adjust when you step inside.
 To achieve this, I use [Shadowenv by Shopify](https://shopify.github.io/shadowenv/).
 
-## Do You Want to Build a Sand Castle?
+## Do You Want to Build a Sandcastle?
 
 Let's get started by creating our sandbox directory. With Shadowenv installed, we first add the hidden directory it monitors:
 ```bash
