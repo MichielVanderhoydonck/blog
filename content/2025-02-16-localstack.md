@@ -1,5 +1,5 @@
 +++
-title = "Fake It Till You Make It: A LocalStack DevOps Journey"
+title = "A LocalStack DevOps Journey"
 date = "2025-02-16"
 description = "Usages for mocking AWS Services locally."
 [taxonomies]
