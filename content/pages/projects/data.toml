@@ -6,3 +6,10 @@ links = [
     { name = "github", url = "https://www.github.com/MichielVanderhoydonck/blog" },
     { name = "docs", url = "https://www.getzola.org/documentation/getting-started/overview/" },
     ]
+[[project]]
+name = "SLOAK CLI"
+desc = "A command line interface to facilitate with Service Level Objective calculations"
+tags = ["slo", "sre", "golang"]
+links = [
+    { name = "github", url = "https://www.github.com/MichielVanderhoydonck/sloak" },
+    ]    
