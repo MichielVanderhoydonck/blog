@@ -1,2 +1,21 @@
-/node_modules
+# Zola output
 /public
+
+# Node dependencies
+/node_modules
+
+# macOS system files
+.DS_Store
+Thumbs.db
+
+# IDEs/Editors
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# Giallo generated stylesheets
+/static/giallo-*.css

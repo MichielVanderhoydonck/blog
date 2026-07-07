@@ -37,16 +37,16 @@ compile_sass = false
 build_search_index = false
 
 [markdown]
-# Whether to do syntax highlighting
-# Theme can be customised by setting the `highlight_theme` variable to a theme supported by Zola
-highlight_code = true
+github_alerts = true
+insert_anchor_links = "heading"
 
-# A list of directories used to search for additional `.sublime-syntax` and `.tmTheme` files.
-extra_syntaxes_and_themes = []
+[markdown.highlighting]
+# Kita theme supports both "inline" and "class" modes.
+style = "class"
 
-# The theme to use for code highlighting.
-# See below for list of allowed values.
-highlight_theme = "base16-ocean-dark"
+# If light/dark themes are set, the code highlighting theme will follow Kita theme's light/dark mode.
+light_theme = "light-plus"
+dark_theme = "dark-plus"
 
 # The Kita theme style config.
 [extra]

@@ -5,6 +5,12 @@ on:
     branches:
       - main
 
+# Allow only one concurrent deployment, skipping runs queued between the run in-progress and latest queued.
+# However, do NOT cancel in-progress runs as we want to allow these production deployments to complete.
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -13,10 +19,10 @@ jobs:
         with:
           submodules: true
 
-      - name: Upload Pages artifact
-        uses: st1020/zola-deploy@v1
+      - name: Build and Upload Pages artifact
+        uses: getzola/github-pages@v1
         with:
-          version: v0.19.1
+          zola_version: v0.22.1
 
   deploy:
     needs: build
