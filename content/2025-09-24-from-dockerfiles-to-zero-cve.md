@@ -12,7 +12,7 @@ The Chainguard workshop focused on **secure container builds**, modern tooling, 
     - Does not provide its own kernel; relies on the container runtime.
     - Provides components at the right granularity with glibc support.
     - Ideal for building Chainguard Containers with embedded SBOMs and signed images.
-- **Chainguard curated images** ([chainguard.dev](https://chainguard.dev/)) are hardened and optimized for security.
+- **Chainguard curated images** ([chainguard.dev](https://chainguard.dev/)) are hardened and optimised for security.
 - **Choosing base images**: ranges from traditional distributions (Debian, Ubuntu, RHEL, Alpine) to distroless images like Wolfi or Chainguard.
     - Trade-offs: large communities vs. minimal footprint and built-in supply chain guarantees.
     

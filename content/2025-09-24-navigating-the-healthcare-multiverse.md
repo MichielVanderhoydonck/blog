@@ -16,7 +16,7 @@ Their goal is to provide simple, secure compute at the edge, flexible enough for
 
 ## The Lab Reality
 
-The lab runs a pipeline of analyzers, that for instance process a blood sample. This workflow used to be a beautiful mess of technologies intertwined, different in every location, with little standardisation. This of course was hard to scale, to secure, and even harder to manage across all countries and their laws.
+The lab runs a pipeline of analysers, that for instance process a blood sample. This workflow used to be a beautiful mess of technologies intertwined, different in every location, with little standardisation. This of course was hard to scale, to secure, and even harder to manage across all countries and their laws.
 
 ## Two Very Different Users
 

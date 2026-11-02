@@ -10,11 +10,11 @@ The Talos team demonstrated how to provision, manage, and operate immutable Kube
 
 ## Provisioning Workflow
 
-Talos emphasizes immutability, API-first management, and security. The demo followed the standard flow:
+Talos emphasises immutability, API-first management, and security. The demo followed the standard flow:
 1. **Generate secrets** `talosctl gen secrets`  
    Provides TLS and ETCD keys for nodes.
 2. **Generate cluster configuration** `talosctl gen config --with-secrets ./secrets.yaml ...`  
-   Merges secrets and allows customization.  
+   Merges secrets and allows customisation.  
     - Demo used QEMU/virt-install to spin up VMs.
     - Configuration is heavily commented, making it easy to adjust networking, control plane endpoints, or ETCD settings.
 3. **Apply configuration** `talosctl apply-config --insecure --file ...`  

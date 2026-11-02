@@ -42,7 +42,7 @@ then installing it via:
 helm upgrade --install localstack localstack-repo/localstack -n localstack --create-namespace
 ```
 
-## Dialing In: Connecting to our local cloud
+## Dialling In: Connecting to our local cloud
 
 Now that LocalStack is running, we have several ways to interact with it.
 
@@ -195,7 +195,7 @@ And set our kubeconfig in our sandbox.lisp:
 ### Burrowing Deeper: A Gopher in Our Sandbox
 
 We're not constrained to IaC alone, many clouds offer an SDK, that means we're able to approach our LocalStack using a programming language like Go.
-To simply demontrate us fetching our beloved bucket and it's content we can build and run the following program:
+To simply demonstrate us fetching our beloved bucket and its content we can build and run the following program:
 ```go
 package main
 
@@ -279,7 +279,7 @@ select * from sandbox.aws_s3_object where bucket_name = 'henry';
 We can confirm that everything is in place!
 
 At first glance, this might seem unnecessary—but the real power of Steampipe comes when we install additional plugins.
-This allows us to query across LocalStack, Kubernetes, and other systems, providing a unified way to track system behavior, changes, and interactions across different components.
+This allows us to query across LocalStack, Kubernetes, and other systems, providing a unified way to track system behaviour, changes, and interactions across different components.
 
 # Shaking Off the Sand
  

@@ -9,7 +9,7 @@ tags = ["OpenTelemetry", "Prometheus", "Observability", "DevOps", "Metrics"]
 
 # Watching Ecosystems Converge Brings Us Joy
 
-With Prometheus being one of the largest open-source alerting and monitoring frameworks for over a decade, many new projects arose across the observability landscape. Next to metrics, we also have other pillars like logging, distributed tracing, and contextual data. As you might imagine, with so many projects and perspectives came the desire to standardize across the stack. For that reason, OpenTelemetry came to be, providing vendor-neutral APIs and SDKs to simplify application instrumentation. Building for such a broad scope without compromise is a utopia, and there will always be design trade-offs to discuss. A little over a year ago, I saw an interesting [talk](https://youtu.be/_yYJm5B8GPw?si=V54WjpmyxVWy4iDr) and [blog post](https://promlabs.com/blog/2025/07/17/why-i-recommend-native-prometheus-instrumentation-over-opentelemetry/) by Julius Volz, co-founder of prometheus.io, sharing his viewpoints on instrumentation. In this post, we'll look at how the communities addressed these points of feedback, whether they still hold, or if there's a fresh way of looking at them.
+With Prometheus being one of the largest open-source alerting and monitoring frameworks for over a decade, many new projects arose across the observability landscape. Next to metrics, we also have other pillars like logging, distributed tracing, and contextual data. As you might imagine, with so many projects and perspectives came the desire to standardise across the stack. For that reason, OpenTelemetry came to be, providing vendor-neutral APIs and SDKs to simplify application instrumentation. Building for such a broad scope without compromise is a utopia, and there will always be design trade-offs to discuss. A little over a year ago, I saw an interesting [talk](https://youtu.be/_yYJm5B8GPw?si=V54WjpmyxVWy4iDr) and [blog post](https://promlabs.com/blog/2025/07/17/why-i-recommend-native-prometheus-instrumentation-over-opentelemetry/) by Julius Volz, co-founder of prometheus.io, sharing his viewpoints on instrumentation. In this post, we'll look at how the communities addressed these points of feedback, whether they still hold, or if there's a fresh way of looking at them.
 
 # Understanding the Friction: Architectural Trade-Offs
 
@@ -56,7 +56,7 @@ The native Prometheus Go SDK achieved near-zero allocations during runtime count
 
 # The Prometheus Shift: Embracing OTLP
 
-The Prometheus community actively embraced the shift toward OpenTelemetry, evolving Prometheus 3.0 (and subsequent updates) into a first-class storage backend for OTel data.
+The Prometheus community actively embraced the shift towards OpenTelemetry, evolving Prometheus 3.0 (and subsequent updates) into a first-class storage backend for OTel data.
 
 ## Native OTLP Ingestion and UTF-8 Support
 
@@ -114,7 +114,7 @@ For environments that require pure push (like serverless functions or batch jobs
 
 ## Performance Pass across OTel SDKs
 
-OpenTelemetry SIGs heavily optimized client SDKs. In Go and Java:
+OpenTelemetry SIGs heavily optimised client SDKs. In Go and Java:
 - High-throughput `sync.Map` implementations and atomic operations dramatically reduced locking overhead during counter increments.
 - The [weaver](https://github.com/open-telemetry/weaver) project streamlined semantic convention generation.
 
@@ -236,7 +236,7 @@ A year ago, choosing between Prometheus and OpenTelemetry felt like picking a si
 
 But convergence isn’t uniformity. Both projects still hold onto their core philosophies:
 - **Prometheus** remains an opinionated, pull-based monitoring system built for tight PromQL control.
-- **OpenTelemetry** operates as a flexible, signal-agnostic standardization layer.
+- **OpenTelemetry** operates as a flexible, signal-agnostic standardisation layer.
 
 In practice, native Prometheus instrumentation is still the best fit for scrape-driven setups needing tight cardinality control. OpenTelemetry shines when you need unified telemetry (metrics, logs, and traces) across heterogeneous systems. Increasingly, teams use both: OTel for collection, and Prometheus for storage.
 
